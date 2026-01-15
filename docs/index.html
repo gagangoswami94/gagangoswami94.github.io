@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Engineering Setup | Dev Environment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        pre { background-color: #1e293b; color: #e2e8f0; padding: 1.25rem; border-radius: 0.75rem; overflow-x: auto; font-family: 'Fira Code', monospace; position: relative; border: 1px solid #334155; }
+        .copy-btn { position: absolute; top: 0.5rem; right: 0.5rem; font-size: 0.75rem; background: #334155; padding: 0.25rem 0.5rem; border-radius: 4px; cursor: pointer; }
+        .copy-btn:hover { background: #475569; }
+        body { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <i class="fa-solid fa-code-branch text-blue-600 text-2xl"></i>
+            <span class="font-bold text-xl tracking-tight text-slate-800">AI Setup</span>
+        </div>
+        <div class="space-x-6 hidden md:flex text-sm font-semibold text-slate-500">
+            <a href="#install" class="hover:text-blue-600 transition">1. Install</a>
+            <a href="#github" class="hover:text-blue-600 transition">2. GitHub UI</a>
+            <a href="#clone" class="hover:text-blue-600 transition">3. Clone</a>
+        </div>
+    </nav>
+
+    <div class="max-w-4xl mx-auto px-6 py-16">
+        <header class="mb-20">
+            <h1 class="text-5xl font-extrabold text-slate-900 mb-6 tracking-tight">AI LLM Development Environment</h1>
+            <p class="text-xl text-slate-600 leading-relaxed max-w-2xl">Complete setup guide for Windows, macOS, and Linux. Get ready for the AI Engineering course.</p>
+        </header>
+
+        <section id="install" class="mb-24 scroll-mt-24">
+            <h2 class="text-3xl font-bold mb-10 flex items-center gap-4">
+                <span class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center text-base">01</span>
+                Core Tool Installation
+            </h2>
+
+            <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm mb-8">
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fa-brands fa-git-alt text-orange-600"></i> Git</h3>
+                <div class="grid md:grid-cols-3 gap-4 text-sm">
+                    <div class="p-4 bg-slate-50 rounded-lg">
+                        <p class="font-bold text-slate-700">Windows</p>
+                        <a href="https://git-scm.com" class="text-blue-600 hover:underline">Download Installer</a>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-lg">
+                        <p class="font-bold text-slate-700">macOS</p>
+                        <code>brew install git</code>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-lg">
+                        <p class="font-bold text-slate-700">Linux</p>
+                        <code>sudo apt install git</code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-slate-900 text-white p-8 rounded-2xl">
+                    <h3 class="text-xl font-bold mb-2">Cursor.com</h3>
+                    <p class="text-slate-400 text-sm mb-6">AI-native code editor. Download the version for your OS.</p>
+                    <a href="https://cursor.com" class="inline-block bg-blue-600 px-6 py-2 rounded-lg font-bold hover:bg-blue-500 transition">Download Cursor</a>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border border-slate-200">
+                    <h3 class="text-xl font-bold mb-2">uv</h3>
+                    <p class="text-slate-500 text-sm mb-4">Ultra-fast Python manager.</p>
+                    <code class="text-xs bg-slate-100 p-2 block rounded text-blue-700 font-mono">curl -LsSf https://astral.sh/uv/install.sh | sh</code>
+                </div>
+            </div>
+        </section>
+
+        <section id="github" class="mb-24 scroll-mt-24">
+            <h2 class="text-3xl font-bold mb-10 flex items-center gap-4">
+                <span class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center text-base">02</span>
+                Create Repo (GitHub UI)
+            </h2>
+            <div class="space-y-4">
+                <div class="flex items-start gap-4 p-4 bg-white border border-slate-200 rounded-xl">
+                    <div class="bg-blue-100 text-blue-600 font-bold px-3 py-1 rounded">1</div>
+                    <p class="text-slate-700">Go to <strong>GitHub.com</strong> > <strong>New Repository</strong>.</p>
+                </div>
+                <div class="flex items-start gap-4 p-4 bg-white border border-slate-200 rounded-xl">
+                    <div class="bg-blue-100 text-blue-600 font-bold px-3 py-1 rounded">2</div>
+                    <p class="text-slate-700">Name it <code>Ai-engineering</code> and check <strong>"Add a README file"</strong>.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="clone" class="mb-24 scroll-mt-24">
+            <h2 class="text-3xl font-bold mb-10 flex items-center gap-4">
+                <span class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center text-base">03</span>
+                Clone & Setup
+            </h2>
+            <p class="text-slate-600 mb-6 font-medium italic">Run these in your terminal:</p>
+            <pre>
+# Clone the repository
+git clone https://github.com/YOUR_USERNAME/Ai-engineering.git
+
+# Enter the folder
+cd Ai-engineering
+
+# Initialize Python environment
+uv init
+
+# Launch Editor
+cursor .</pre>
+        </section>
+    </div>
+
+    <footer class="py-12 border-t border-slate-200 text-center text-slate-400 text-sm">
+        &copy; 2026 AI Engineering Course &bull; Hosted on GitHub Pages
+    </footer>
+
+</body>
+</html>
