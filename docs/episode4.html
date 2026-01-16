@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Episode 4 — Interacting with OpenAI Using Python</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: #e5e7eb;
+            line-height: 1.6;
+            padding: 40px;
+        }
+        h1, h2, h3 {
+            color: #38bdf8;
+        }
+        code {
+            background: #020617;
+            padding: 4px 6px;
+            border-radius: 4px;
+            color: #22c55e;
+        }
+        pre {
+            background: #020617;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-top: 10px;
+        }
+        .box {
+            background: #020617;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #38bdf8;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Episode 4 — Interacting with OpenAI Using Python</h1>
+
+<p>
+In this lesson, we will write our first Python program that interacts with OpenAI — not using ChatGPT like a website,
+but using OpenAI like real developers do through APIs.
+</p>
+
+<hr>
+
+<h2>🎯 Learning Objectives</h2>
+
+<ul>
+    <li>Create an OpenAI API key</li>
+    <li>Secure it using a <code>.env</code> file</li>
+    <li>Write Python code to connect to OpenAI</li>
+    <li>Send your first AI message</li>
+    <li>Understand system and user prompts</li>
+</ul>
+
+<hr>
+
+<h2>🔐 Step 1 — Create OpenAI API Key</h2>
+
+<div class="box">
+    <p>
+        An API key is like a password for your application.  
+        It allows your program to authenticate with OpenAI servers.
+    </p>
+</div>
+
+Steps:
+<ol>
+    <li>Go to <b>https://platform.openai.com</b></li>
+    <li>Login and generate a new API key</li>
+    <li>Copy the key</li>
+</ol>
+
+<hr>
+
+<h2>📁 Step 2 — Project Setup</h2>
+
+Create a new project folder and add a <code>.env</code> file.
+
+<h3>.env file</h3>
+
+<pre>
+OPENAI_API_KEY=sk-your-api-key-here
+</pre>
+
+This file stores your secret key securely.
+
+<hr>
+
+<h2>🐍 Step 3 — Install Dependencies</h2>
+
+<pre>
+pip install openai python-dotenv
+</pre>
+
+<hr>
+
+<h2>🧠 Step 4 — Writing Our First AI Program</h2>
+
+Create a file called <code>main.py</code>
+
+<pre>
+import os
+from dotenv import load_dotenv
+from openai import OpenAI
+
+load_dotenv(override=True)
+api_key = os.getenv('OPENAI_API_KEY')
+
+# Validation checks
+if not api_key:
+    print("No API key found!")
+elif not api_key.startswith("sk-"):
+    print("API key format looks wrong.")
+else:
+    print("API key found!")
+
+client = OpenAI()
+
+# Simple request
+message = "Hello, GPT! This is my first ever message to you!"
+messages = [{"role": "user", "content": message}]
+
+response = client.chat.completions.create(
+    model="gpt-4o-mini", 
+    messages=messages
+)
+
+print(f"Response: {response.choices[0].message.content}")
+</pre>
+
+<hr>
+
+<h2>▶ Running the Program</h2>
+
+<pre>
+python main.py
+</pre>
+
+Your program will now talk directly to OpenAI servers.
+
+<hr>
+
+<h2>🧩 Understanding the Response Object</h2>
+
+<div class="box">
+    <p>
+        OpenAI returns a structured response.  
+        It contains multiple possible answers called <b>choices</b>.
+    </p>
+</div>
+
+<pre>
+response.choices[0].message.content
+</pre>
+
+Meaning:
+<ul>
+    <li><code>choices</code> → list of AI answers</li>
+    <li><code>[0]</code> → first best answer</li>
+    <li><code>message.content</code> → actual text reply</li>
+</ul>
+
+<hr>
+
+<h2>🤖 Step 5 — System and User Prompts</h2>
+
+<div class="box">
+    <p>
+        AI behavior is programmable using prompts.
+    </p>
+</div>
+
+<h3>System Prompt</h3>
+Defines AI personality and rules.
+
+Examples:
+<ul>
+    <li>You are a Python tutor</li>
+    <li>You are a sarcastic robot</li>
+    <li>You are an HR expert</li>
+</ul>
+
+<h3>User Prompt</h3>
+The actual question or task.
+
+Examples:
+<ul>
+    <li>Explain decorators</li>
+    <li>Review my resume</li>
+    <li>What is 2 + 2?</li>
+</ul>
+
+<hr>
+
+<h2>🧪 Example with System Prompt</h2>
+
+<pre>
+messages = [
+    {
+        "role": "system", 
+        "content": "You are a sarcastic robot who is tired of answering math questions."
+    },
+    {
+        "role": "user", 
+        "content": "What is 2 + 2?"
+    }
+]
+
+response = client.chat.completions.create(
+    model="gpt-4o-mini", 
+    messages=messages
+)
+
+print(f"System-Guided Response: {response.choices[0].message.content}")
+</pre>
+
+<hr>
+
+<h2>🧠 Key Intuition</h2>
+
+<ul>
+    <li>AI is not magic — it is programmable</li>
+    <li>System prompt controls the brain</li>
+    <li>User prompt controls the task</li>
+    <li>This is how real AI products are built</li>
+</ul>
+
+<hr>
+
+<h2>✅ Summary</h2>
+
+<ul>
+    <li>You created your OpenAI API key</li>
+    <li>You secured it using environment variables</li>
+    <li>You wrote your first AI-powered Python program</li>
+    <li>You learned how system and user prompts work</li>
+</ul>
+
+<hr>
+
+<h2>🚀 Next Episode</h2>
+
+<p>
+In the next episode, we will build a real mini AI project using this setup.
+</p>
+
+<p><b>Congratulations! You’ve officially started your AI engineering journey.</b></p>
+
+</body>
+</html>
